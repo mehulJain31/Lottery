@@ -1,7 +1,7 @@
 // the deployment script
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const Web3  = require('web3');
-const {interface, bytecode} = require('../compile');
+const {interface, bytecode} = require('./compile');
 
 
 const provider = new HDWalletProvider(
@@ -24,7 +24,8 @@ const deploy = async () => {
   .deploy({data:bytecode})
   .send({gas: '1000000', from : accounts[0] });
 
-  console.log("after deployment to ", result.options.address);
+  console.log(interface);
+  console.log("contract deployed to ", result.options.address);
   provider.engine.stop();
 
 };
